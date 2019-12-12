@@ -1,4 +1,5 @@
 
+
 class City:
     def __init__(self, id: str, name: str, state: str, country: str):
         self.id = id

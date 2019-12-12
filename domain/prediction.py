@@ -1,4 +1,20 @@
 import datetime
+from dateutil.parser import parse
+
+from domain.city import City
+
+
+def get_predictions_from_response_data(response: object):
+    data = response.get('data')
+    predictions = []
+    for p in data:
+        rain = p.get('rain')
+        temperature = p.get('temperature')
+        prediction = Prediction(response.get('id'), parse(p.get('date')),
+                                rain.get('probability'), rain.get('precipitation'),
+                                temperature.get('min'), temperature.get('max'))
+        predictions.append(prediction);
+    return predictions
 
 
 class Prediction:
